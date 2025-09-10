@@ -41,7 +41,7 @@ public class Nem12MeterReadingProcessor implements ItemProcessor<String, List<Me
                 for (int i=2;i<parts.length;i++) {
                     String reading = parts[i].trim();
                     if (List.of("A","E","V").contains(reading)){
-                        logger.info("Quality Flag encountered, aka finised processing all readings from  300 record dated {} of nmi {}", parts[1], currentNmi);
+                        logger.info("Quality Flag encountered, aka finished processing all readings from a 300 record dated {} of nmi {}", parts[1], currentNmi);
                         if (meterReadings.size()!=48){
                             logger.warn("done reading a 300 record, but accumulated {} readings instead of the expected 48 readings per day", meterReadings.size());
                         }
@@ -54,8 +54,6 @@ public class Nem12MeterReadingProcessor implements ItemProcessor<String, List<Me
                     int intervalsPassed = i-2; //first record at index 2, is at midnight, zero interval has passed
                     LocalDateTime timestamp = recordDate.atTime(LocalTime.MIDNIGHT.plusMinutes(intervalsPassed*30));
                     MeterReading meterReading = new MeterReading();
-//                    UUID id = UUID.randomUUID();
-//                    meterReading.setId(id);
                     meterReading.setNmi(currentNmi);
                     meterReading.setTimestamp(timestamp);
                     meterReading.setConsumption(new BigDecimal(reading));

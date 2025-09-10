@@ -45,7 +45,7 @@ public class Nem12MeterReadingWriter implements ItemWriter<List<MeterReading>> {
 
     @Override
     public void write(@NonNull Chunk<? extends List<MeterReading>> chunk) throws Exception {
-        // Flatten Chunk<List<MeterReading>> into Chunk<MeterReading>
+        // Flatten Chunk<List<MeterReading>> into List<MeterReading>
         List<MeterReading> flatList = chunk.getItems().stream()
                 .filter(list -> list != null)
                 .flatMap(List::stream)
