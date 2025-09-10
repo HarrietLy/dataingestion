@@ -13,6 +13,7 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Slf4j
 public class Nem12MeterReadingProcessor implements ItemProcessor<String, List<MeterReading>> {
@@ -53,10 +54,13 @@ public class Nem12MeterReadingProcessor implements ItemProcessor<String, List<Me
                     int intervalsPassed = i-2; //first record at index 2, is at midnight, zero interval has passed
                     LocalDateTime timestamp = recordDate.atTime(LocalTime.MIDNIGHT.plusMinutes(intervalsPassed*30));
                     MeterReading meterReading = new MeterReading();
+//                    UUID id = UUID.randomUUID();
+//                    meterReading.setId(id);
                     meterReading.setNmi(currentNmi);
                     meterReading.setTimestamp(timestamp);
                     meterReading.setConsumption(new BigDecimal(reading));
                     meterReadings.add(meterReading);
+
                 }
                 break;
             default:

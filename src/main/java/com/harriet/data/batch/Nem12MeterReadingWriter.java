@@ -20,8 +20,9 @@ public class Nem12MeterReadingWriter implements ItemWriter<List<MeterReading>> {
         delegate.setDataSource(datasource);
         delegate.setItemSqlParameterSourceProvider(new BeanPropertyItemSqlParameterSourceProvider<>());
         delegate.setSql("""
-                INSERT INTO meter_readings (id, nmi, timestamp, consumption)
-                VALUES (:id, :nmi, :timestamp, :consumption)
+                INSERT 
+                INTO meter_readings ( nmi, timestamp, consumption)
+                VALUES (:nmi, :timestamp, :consumption)
                 """);
         try{
             delegate.afterPropertiesSet();
