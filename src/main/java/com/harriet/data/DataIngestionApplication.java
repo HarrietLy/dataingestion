@@ -14,6 +14,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.time.LocalDateTime;
+
 @SpringBootApplication
 @Slf4j
 public class DataIngestionApplication implements CommandLineRunner {
@@ -40,6 +42,7 @@ public class DataIngestionApplication implements CommandLineRunner {
         logger.info("Starting ingestion job ingesting file at {}...", filePath);
         JobParameters jobParameters = new JobParametersBuilder()
                 .addString("filePath", filePath)
+                .addLong("time",System.currentTimeMillis())
                 .toJobParameters();
         JobExecution execution = jobLauncher.run(ingestionJob, jobParameters);
         logger.info("Job started with ID {}, at status {}", execution.getJobId(), execution.getStatus());

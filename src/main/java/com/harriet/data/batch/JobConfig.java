@@ -12,6 +12,7 @@ import org.springframework.batch.core.step.builder.StepBuilder;
 import org.springframework.batch.item.ItemProcessor;
 import org.springframework.batch.item.ItemReader;
 import org.springframework.batch.item.ItemWriter;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.transaction.PlatformTransactionManager;
@@ -22,14 +23,10 @@ import java.util.List;
 
 @Configuration
 @EnableBatchProcessing
-//@RequiredArgsConstructor
 public class JobConfig {
 
-//    @Bean
-//    @StepScope
-//    public ItemReader<String> reader(@org.springframework.beans.factory.annotation.Value("#{jobParameters['filePath']}") String filePath) {
-//        return new Nem12MeterReadingReader(filePath);
-//    }
+    @Value("${app.ingestion.chunkSize}")
+    private int chunkSize;
 
     @Bean
     public ItemProcessor<String, List<MeterReading>> processor() {
@@ -48,7 +45,7 @@ public class JobConfig {
                           ItemProcessor<String, List<MeterReading>> processor,
                           ItemWriter<List<MeterReading>> writer) {
         return new StepBuilder("nem12Step", jobRepository)
-                .<String, List<MeterReading>>chunk(100, transactionManager)
+                .<String, List<MeterReading>>chunk(chunkSize, transactionManager)
                 .reader(reader)
                 .processor(processor)
                 .writer(writer)

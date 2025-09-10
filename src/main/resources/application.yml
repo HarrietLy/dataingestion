@@ -12,3 +12,8 @@ spring:
   sql:
     init:
       mode: always  # Options: always, embedded, never
+
+
+app:
+  ingestion:
+    chunkSize: 50

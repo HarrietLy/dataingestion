@@ -28,6 +28,7 @@ Q1. What is the rationale for the technologies you have decided to use?
 
 
 Q2. What would you have done differently if you had more time?
-
+write more test
+add skip
 
 Q3. What is the rationale for the design choices that you have made?
