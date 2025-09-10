@@ -19,6 +19,7 @@ This is a CLI application that can be used to ingest large files in NEM12 format
 
 ### 🛠️ Answers to Questions
 1. Q1. What is the rationale for the technologies you have decided to use?
+
 Since the nem12 meter reating file potentially contain millions of rows or more (tracking daily meter readings of many mater readers). It can be a very big file, hence we need a tool that
 can help perform data ingestion of a large file without sacrificing ingestion speed. Furthermore, large data is bound to have some dirty records
 that need to be handled, without impacting the rest of non-dirty data.
@@ -33,6 +34,7 @@ keeping previous chunks of data that were successfully inserted.
 Please note that for development purpose, H2 in-memory database is used. For production, another database should be used such as Postgres, MySQL, etc.
 
 2. Q2. What would you have done differently if you had more time?
+
 With more time, I would write automated tests to ensure core functionality is preserved with future enhancements.
 I would also log out bad records that cause failure in read/process or write into a separate table. This table would be helpful for
 debugging ingestion failure and detect any file corruption.
