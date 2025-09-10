@@ -10,12 +10,12 @@ This is a CLI application that can be used to ingest large files in NEM12 format
 ### 🛠️ Setup Instructions
 #### ✅ Step 1. Git Clone the Project to your local machine.
 #### ✅ Step 2. Execute the following on your terminal
-- cd <repo-folder-in-your-local>
+- cd into repo-folder-in-your-local
 - ./mvnw clean install 
 - java -jar target/data-0.0.1-SNAPSHOT.jar classpath:nem12example
 #### ✅ Step 3. To release to production, adding in path to the file as argument to the command line like below
 - ./mvnw clean install in deploy script to build the jar in the production server
-- java -jar target/data-0.0.1-SNAPSHOT.jar **put in filepath here**
+- java -jar target/data-0.0.1-SNAPSHOT.jar **filepath**
 
 ### 🛠️ Answers to Questions
 1. Q1. What is the rationale for the technologies you have decided to use?
